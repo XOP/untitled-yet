@@ -1,0 +1,12 @@
+#realm
+.idea
+
+# dev
+node_modules
+bower_components
+*.iml
+*.log
+*.zip
+
+# static
+public
