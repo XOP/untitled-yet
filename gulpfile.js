@@ -89,6 +89,29 @@ gulp.task('scripts', ['scripts-vendor', 'scripts-custom'], function(){
     reload();
 });
 
+
+//
+// react jsx
+gulp.task('react-jsx', function(){
+    return gulp.src(paths.js.src + '/app/src/**/*.js')
+        .pipe($.plumber())
+        .pipe($.react())
+        .pipe(gulp.dest(paths.js.src + '/app/build/'));
+});
+
+// react scripts
+gulp.task('react-js', ['react-jsx'], function(){
+    return gulp.src(paths.js.src + '/app/build/**/*.js')
+        .pipe(production ? $.uglify() : $.util.noop())
+        .pipe(gulp.dest(paths.js.dest + '/app/'));
+});
+
+// react full
+gulp.task('react', ['react-js'], function(){
+    reload();
+});
+
+
 //
 // html
 gulp.task('html', function(){
@@ -150,7 +173,7 @@ gulp.task('build', ['clean'], function(){
         'images',
         'favicon',
         'styles',
-        'scripts'
+        'react'
     );
 });
 
@@ -163,8 +186,8 @@ gulp.task('default', ['build'], function(){
         function(){
             gulp.watch('./src/*.html', ['html']);
 //            gulp.watch('./templates/**/*.*', ['templates']);
-            gulp.watch('./' + paths.js.src + '/**/*.js', ['scripts-all']);
-            gulp.watch('./views/**/*.ejs', ['bs-reload']);
+//            gulp.watch('./' + paths.js.src + '/**/*.js', ['scripts-all']);
+            gulp.watch('./' + paths.js.src + '/app/src/**/*.js', ['react']);
             gulp.watch('./' + paths.css.src + '/**/*.styl', ['styles']);
         });
 });
