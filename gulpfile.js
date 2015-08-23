@@ -39,6 +39,9 @@ gulp.task('styles', function () {
         // vendor css
         gulp.src('node_modules/skeleton.css/skeleton.css'),
 
+        // font-awesome
+        gulp.src('node_modules/font-awesome/css/font-awesome.css'),
+
         // custom css
         gulp.src([
                 '!' + paths.css.src + '/**/_*.*',
@@ -49,9 +52,17 @@ gulp.task('styles', function () {
             .pipe($.concatCss('all.css'))
         )
         .pipe($.plumber())
-        .pipe($.concatCss('main.css'))
+        .pipe($.concatCss('main.css', {rebaseUrls : false}))
         .pipe(production ? $.minifyCss() : $.util.noop() )
         .pipe(gulp.dest(paths.css.dest));
+});
+
+
+//
+// fonts
+gulp.task('fonts', function(){
+    gulp.src('./node_modules/font-awesome/fonts/**/*')
+        .pipe(gulp.dest(paths.fonts.dest));
 });
 
 
@@ -61,10 +72,11 @@ gulp.task('styles', function () {
 // vendor | no-minification
 gulp.task('scripts-vendor', function(){
     return gulp.src([
-            paths.js.src + '/vendor/**/*.js',
-            'node_modules/zepto/zepto.min.js'
-        ])
-        .pipe(gulp.dest('public/js/vendor/'));
+            'node_modules/q/q.js',
+            'node_modules/zepto/zepto.min.js',
+            'node_modules/react/dist/react-with-addons.min.js'
+    ])
+        .pipe(gulp.dest(paths.js.dest + '/lib/'));
 });
 
 // custom
@@ -134,6 +146,14 @@ gulp.task('favicon', function(){
 
 
 //
+// data
+gulp.task('data', function(){
+    return gulp.src(paths.data.src + '/**')
+        .pipe(gulp.dest(paths.data.dest));
+});
+
+
+//
 // browser sync
 
 gulp.task('bs-reload', function(){
@@ -160,6 +180,8 @@ gulp.task('clean', function(cb){
         paths.css.dest,
         paths.js.dest,
         paths.img.dest,
+        paths.fonts.dest,
+        paths.data.dest,
         'public/*.ico'
     ], cb);
 });
@@ -170,9 +192,12 @@ gulp.task('clean', function(cb){
 gulp.task('build', ['clean'], function(){
     return runSequence(
         'html',
+        'data',
         'images',
+        'fonts',
         'favicon',
         'styles',
+        'scripts-vendor',
         'react'
     );
 });
@@ -185,6 +210,7 @@ gulp.task('default', ['build'], function(){
         'sync',
         function(){
             gulp.watch('./src/*.html', ['html']);
+            gulp.watch('./data/**/*.json', ['data']);
 //            gulp.watch('./templates/**/*.*', ['templates']);
 //            gulp.watch('./' + paths.js.src + '/**/*.js', ['scripts-all']);
             gulp.watch('./' + paths.js.src + '/app/src/**/*.js', ['react']);

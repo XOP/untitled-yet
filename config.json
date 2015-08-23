@@ -12,6 +12,13 @@
         "img" : {
             "src" : "assets/img",
             "dest" : "public/img"
+        },
+        "fonts" : {
+            "dest" : "public/fonts"
+        },
+        "data" : {
+            "src" : "data",
+            "dest" : "public/data"
         }
     }
 }
