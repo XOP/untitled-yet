@@ -222,8 +222,7 @@ gulp.task('default', ['build'], function(){
             gulp.watch('./src/*.html', ['html']);
             gulp.watch('./data/**/*.json', ['data']);
 //            gulp.watch('./templates/**/*.*', ['templates']);
-//            gulp.watch('./' + paths.js.src + '/**/*.js', ['scripts-all']);
-            gulp.watch('./' + paths.js.src + '/app/src/**/*.js', ['webpack']);
+            gulp.watch('./' + paths.js.src + '/app/**/*.{js,jsx}', ['webpack']);
             gulp.watch('./' + paths.css.src + '/**/*.styl', ['styles']);
         });
 });
