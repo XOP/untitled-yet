@@ -1,29 +1,10 @@
-/** @jsx React.DOM */
-
-var appContainer = document.getElementById('app');
-
-
-function getData(obj){
-    return Q.promise(function (resolve, reject) {
-        $.getJSON("./data/" + obj + "/data.json", function(data){
-            resolve(data);
-        });
-    });
-}
-
-
 /**
- * Simple icon builder
+ * Icon Library
+ *
  */
-var FA = React.createClass({
-    render: function () {
-        var className = 'fa fa-' + this.props.name;
-        var attrs = $.extend({}, this.props, {className : className});
-        return (
-            React.createElement('span', attrs)
-        );
-    }
-});
+
+var FA = require('FA');
+var getData = require('getData');
 
 
 /**
@@ -62,8 +43,10 @@ var FilterForm = React.createClass({
 });
 
 
-
-
+/**
+ * Icon
+ *
+ */
 var Icon = React.createClass({
     render: function() {
         return (
@@ -79,6 +62,11 @@ var Icon = React.createClass({
     }
 });
 
+
+/**
+ * Icon list
+ *
+ */
 var IconList = React.createClass({
     render: function() {
         return (
@@ -93,11 +81,12 @@ var IconList = React.createClass({
     }
 });
 
+
 /**
- * Icon form
+ * Build Form
  *
  */
-var IconLibrary = React.createClass({
+module.exports = React.createClass({
 
     getInitialState: function() {
         return {
@@ -124,12 +113,3 @@ var IconLibrary = React.createClass({
         );
     }
 });
-
-
-/**
- * Wrap things up
- */
-React.render(
-    <IconLibrary />,
-    appContainer
-);

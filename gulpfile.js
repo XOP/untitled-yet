@@ -12,6 +12,7 @@ var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var merge = require('merge2');
 var runSequence = require('run-sequence');
+var webpack = require('webpack');
 
 var config = require('./config.json');
 var paths = config.paths;
@@ -118,6 +119,16 @@ gulp.task('react-js', ['react-jsx'], function(){
         .pipe(gulp.dest(paths.js.dest + '/app/'));
 });
 
+gulp.task('webpack', function(cb) {
+    var config = require('./webpack.config.js');
+    webpack(config,
+        function(err, stats) {
+            if(err) throw new $.util.PluginError('webpack', err);
+            $.util.log('[webpack]', stats.toString());
+            cb();
+        });
+});
+
 // react full
 gulp.task('react', ['react-js'], function(){
     reload();
@@ -197,8 +208,7 @@ gulp.task('build', ['clean'], function(){
         'fonts',
         'favicon',
         'styles',
-        'scripts-vendor',
-        'react'
+        'webpack'
     );
 });
 
@@ -213,7 +223,7 @@ gulp.task('default', ['build'], function(){
             gulp.watch('./data/**/*.json', ['data']);
 //            gulp.watch('./templates/**/*.*', ['templates']);
 //            gulp.watch('./' + paths.js.src + '/**/*.js', ['scripts-all']);
-            gulp.watch('./' + paths.js.src + '/app/src/**/*.js', ['react']);
+            gulp.watch('./' + paths.js.src + '/app/src/**/*.js', ['webpack']);
             gulp.watch('./' + paths.css.src + '/**/*.styl', ['styles']);
         });
 });
