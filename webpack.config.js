@@ -28,9 +28,9 @@ var config = {
             {test: /zepto\.min\.js$/, loader: 'script-loader'},
             {test: /q\.js$/, loader: 'script-loader'},
             {
-                test:    /\.js(x)?$/,
+                test: /\.js(x)?$/,
                 exclude: /node_modules/,
-                loader: 'jscs-loader'
+                loader: 'eslint-loader'
             }
         ]
     },

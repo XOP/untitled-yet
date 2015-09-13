@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb",
+
+  "rules": {
+    "indent": [2, 4],
+    "comma-dangle": [2, "never"],
+
+    "no-var": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/no-multi-comp": 1
+  }
+}

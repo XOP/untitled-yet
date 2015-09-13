@@ -26,6 +26,15 @@ var cfg = require('config');
  *
  */
 var FilterForm = React.createClass({
+    propTypes: {
+        size: React.PropTypes.number,
+        minSize: React.PropTypes.number,
+        maxSize: React.PropTypes.number,
+        onSize: React.PropTypes.func,
+        sizeOn: React.PropTypes.bool,
+        onSizeToggle: React.PropTypes.func
+    },
+
     getInitialState: function() {
         return {
             size: this.props.minSize,
@@ -35,30 +44,30 @@ var FilterForm = React.createClass({
 
     render: function() {
         return (
-            <div className='row'>
+            <div className="row">
                 <h4>
-                    <div className='u-pull-left'>
-                        <FA name='expand' />&nbsp;{this.props.size}
+                    <div className="u-pull-left">
+                        <FA name="expand" />&nbsp;{this.props.size}
                     </div>
-                    <div className='u-pull-right'>
+                    <div className="u-pull-right">
                         <Toggle on={this.props.sizeOn} onToggle={this.props.onSizeToggle} />
                     </div>
                 </h4>
                 <input
                     value={this.props.size}
                     onChange={this.props.onSize}
-                    type='range'
+                    type="range"
                     min={this.props.minSize}
                     max={this.props.maxSize}
-                    step='2'
-                    name='size'
-                    className='u-full-width'
+                    step="2"
+                    name="size"
+                    className="u-full-width"
                     />
-                <div className='u-cf u-full-width'>
-                    <div className='u-pull-left'>
+                <div className="u-cf u-full-width">
+                    <div className="u-pull-left">
                         {this.props.minSize}
                     </div>
-                    <div className='u-pull-right'>
+                    <div className="u-pull-right">
                         {this.props.maxSize}
                     </div>
                 </div>
@@ -73,9 +82,13 @@ var FilterForm = React.createClass({
  *
  */
 var IconList = React.createClass({
+    propTypes: {
+        icons: React.PropTypes.array
+    },
+
     render: function() {
         return (
-            <div className='icon-list'>
+            <div className="icon-list">
                 {this.props.icons.map(function(d) {
                     return (
                         <Icon title={d.title} size={d.size} />
@@ -116,11 +129,11 @@ module.exports = React.createClass({
     // pass icon data based on settings
     applyFilter: function() {
         var sortedData = cachedIconData;
-        var filter = this.state.size;
+        var filter = +this.state.size;
         var isSizeOn = this.state.sizeOn;
 
         if (isSizeOn) {
-            sortedData = cachedIconData.filter(function(i) { return i.size == filter; });
+            sortedData = cachedIconData.filter(function(i) { return i.size === filter; });
         }
 
         this.setState({
@@ -151,11 +164,11 @@ module.exports = React.createClass({
 
     render: function() {
         return (
-            <div className='form'>
+            <div className="form">
                 <FilterForm
                     minSize={cfg.minSize}
                     maxSize={cfg.maxSize}
-                    size={this.state.size}
+                    size={+this.state.size}
                     sizeOn={this.state.sizeOn}
                     onSize={this.sizeChange}
                     onSizeToggle={this.sizeToggle}

@@ -1,6 +1,7 @@
 /**
  * Icon component
  */
+
 var cfg = require('config');
 
 module.exports = React.createClass({
@@ -17,9 +18,9 @@ module.exports = React.createClass({
 
     render: function() {
         return (
-            <div className='icon'>
-                <div className='button'>
-                    <img src={this.state.source} width={this.props.size} height={this.props.size} alt=''/>
+            <div className="icon">
+                <div className="button">
+                    <img src={this.state.source} width={this.props.size} height={this.props.size} alt=""/>
                     <div>{this.props.title}</div>
                     <div>{this.props.size} px</div>
                 </div>

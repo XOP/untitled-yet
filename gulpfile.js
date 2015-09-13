@@ -211,7 +211,7 @@ gulp.task('default', ['build'], function(){
 
 //
 // code linting
-gulp.task('jscs', ['webpack'], function(){
-    gulp.watch('./.jscsrc', ['webpack']);
+gulp.task('js-check', ['webpack'], function(){
+    gulp.watch('./.eslintrc', ['webpack']);
     gulp.watch('./' + paths.js.src + '/app/**/*.{js,jsx}', ['webpack']);
 });

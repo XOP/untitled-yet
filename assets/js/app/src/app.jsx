@@ -2,11 +2,12 @@
  * Application
  */
 
-
 //
 // preloading
+/*eslint-disable */
 var $ = require('zepto');
 var Q = require('q');
+/*eslint-enable  */
 
 
 //
