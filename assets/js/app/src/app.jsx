@@ -3,11 +3,14 @@
  */
 
 
-// preloading start
+//
+// preloading
 var $ = require('zepto');
 var Q = require('q');
-// preloading end
 
+
+//
+// loading
 var IconLibrary = require('IconLibrary');
 var appContainer = document.getElementById('app');
 

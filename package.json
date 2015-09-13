@@ -41,6 +41,8 @@
     "gulp-util": "^3.0.5",
     "gulp-webpack": "^1.5.0",
     "imports-loader": "^0.6.4",
+    "jscs": "^2.1.1",
+    "jscs-loader": "^0.2.0",
     "jsx-loader": "^0.13.2",
     "merge2": "^0.3.5",
     "q": "^1.4.1",

@@ -22,11 +22,16 @@ var config = {
     module: {
         noParse: [],
         loaders: [
-            {test: /\.jsx$/, loaders: ["jsx-loader", "imports-loader?React=react"]}
+            {test: /\.jsx$/, loaders: ['jsx-loader', 'imports-loader?React=react']}
         ],
         preLoaders: [
-            {test: /zepto\.min\.js$/, loader: "script-loader"},
-            {test: /q\.js$/, loader: "script-loader"}
+            {test: /zepto\.min\.js$/, loader: 'script-loader'},
+            {test: /q\.js$/, loader: 'script-loader'},
+            {
+                test:    /\.js(x)?$/,
+                exclude: /node_modules/,
+                loader: 'jscs-loader'
+            }
         ]
     },
 

@@ -37,10 +37,10 @@ var FilterForm = React.createClass({
         return (
             <div className='row'>
                 <h4>
-                    <div className="u-pull-left">
+                    <div className='u-pull-left'>
                         <FA name='expand' />&nbsp;{this.props.size}
                     </div>
-                    <div className="u-pull-right">
+                    <div className='u-pull-right'>
                         <Toggle on={this.props.sizeOn} onToggle={this.props.onSizeToggle} />
                     </div>
                 </h4>
@@ -55,10 +55,10 @@ var FilterForm = React.createClass({
                     className='u-full-width'
                     />
                 <div className='u-cf u-full-width'>
-                    <div className="u-pull-left">
+                    <div className='u-pull-left'>
                         {this.props.minSize}
                     </div>
-                    <div className="u-pull-right">
+                    <div className='u-pull-right'>
                         {this.props.maxSize}
                     </div>
                 </div>
@@ -75,11 +75,11 @@ var FilterForm = React.createClass({
 var IconList = React.createClass({
     render: function() {
         return (
-            <div className="icon-list">
-                {this.props.icons.map(function(d){
+            <div className='icon-list'>
+                {this.props.icons.map(function(d) {
                     return (
                         <Icon title={d.title} size={d.size} />
-                    )
+                    );
                 })}
             </div>
         );
@@ -99,14 +99,14 @@ module.exports = React.createClass({
 
             size: cfg.minSize,
             sizeOn: cfg.isSizeOn
-        }
+        };
     },
 
-    componentDidMount : function(){
-        iconData.then(function(data){
+    componentDidMount: function() {
+        iconData.then(function(data) {
             cachedIconData = data;
 
-            if(this.isMounted()){
+            if (this.isMounted()) {
                 this.applyFilter();
             }
         }.bind(this));
@@ -114,13 +114,13 @@ module.exports = React.createClass({
 
     //
     // pass icon data based on settings
-    applyFilter: function(){
+    applyFilter: function() {
         var sortedData = cachedIconData;
         var filter = this.state.size;
         var isSizeOn = this.state.sizeOn;
 
-        if(isSizeOn){
-            sortedData = cachedIconData.filter(function(i){ return i.size == filter });
+        if (isSizeOn) {
+            sortedData = cachedIconData.filter(function(i) { return i.size == filter; });
         }
 
         this.setState({
@@ -130,7 +130,7 @@ module.exports = React.createClass({
 
     //
     // apply current size
-    sizeChange: function(event){
+    sizeChange: function(event) {
         var filter = event.target.value;
 
         this.setState({
@@ -140,7 +140,7 @@ module.exports = React.createClass({
 
     //
     // apply current state
-    sizeToggle: function(){
+    sizeToggle: function() {
         var isSizeOn = this.state.sizeOn ? false : true;
 
         this.setState({

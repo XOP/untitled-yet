@@ -104,21 +104,7 @@ gulp.task('scripts', ['scripts-vendor', 'scripts-custom'], function(){
 
 
 //
-// react jsx
-gulp.task('react-jsx', function(){
-    return gulp.src(paths.js.src + '/app/src/**/*.js')
-        .pipe($.plumber())
-        .pipe($.react())
-        .pipe(gulp.dest(paths.js.src + '/app/build/'));
-});
-
-// react scripts
-gulp.task('react-js', ['react-jsx'], function(){
-    return gulp.src(paths.js.src + '/app/build/**/*.js')
-        .pipe(production ? $.uglify() : $.util.noop())
-        .pipe(gulp.dest(paths.js.dest + '/app/'));
-});
-
+// scripts bundle
 gulp.task('webpack', function(cb) {
     var config = require('./webpack.config.js');
     webpack(config,
@@ -127,11 +113,6 @@ gulp.task('webpack', function(cb) {
             $.util.log('[webpack]', stats.toString());
             cb();
         });
-});
-
-// react full
-gulp.task('react', ['react-js'], function(){
-    reload();
 });
 
 
@@ -225,4 +206,12 @@ gulp.task('default', ['build'], function(){
             gulp.watch('./' + paths.js.src + '/app/**/*.{js,jsx}', ['webpack']);
             gulp.watch('./' + paths.css.src + '/**/*.styl', ['styles']);
         });
+});
+
+
+//
+// code linting
+gulp.task('jscs', ['webpack'], function(){
+    gulp.watch('./.jscsrc', ['webpack']);
+    gulp.watch('./' + paths.js.src + '/app/**/*.{js,jsx}', ['webpack']);
 });

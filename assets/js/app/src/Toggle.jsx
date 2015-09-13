@@ -8,15 +8,15 @@ module.exports = React.createClass({
         onToggle: React.PropTypes.func
     },
 
-    getDefaultProps: function(){
+    getDefaultProps: function() {
         return {
             on: false
-        }
+        };
     },
 
-    render: function () {
+    render: function() {
         var className = 'toggler fa fa-toggle-' + (this.props.on ? 'on' : 'off');
-        var attrs = $.extend({}, this.props, {className : className, onClick : this.props.onToggle});
+        var attrs = $.extend({}, this.props, {className: className, onClick: this.props.onToggle});
         return (
             React.createElement('span', attrs)
         );

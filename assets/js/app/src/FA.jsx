@@ -3,9 +3,9 @@
  */
 
 module.exports = React.createClass({
-    render: function () {
+    render: function() {
         var className = 'fa fa-' + this.props.name;
-        var attrs = $.extend({}, this.props, {className : className});
+        var attrs = $.extend({}, this.props, {className: className});
         return (
             React.createElement('span', attrs)
         );
