@@ -18,9 +18,9 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div className="icon-list">
-                {this.props.icons.map(function(d, key) {
+                {this.props.icons.map(function(d, i) {
                     return (
-                        <Icon key={key} title={d.title} size={d.size} />
+                        <Icon key={i} title={d.title} size={d.size} />
                     );
                 })}
             </div>

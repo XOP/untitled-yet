@@ -7,7 +7,8 @@ var cfg = require('config');
 module.exports = React.createClass({
     propTypes: {
         title: React.PropTypes.string,
-        size: React.PropTypes.number
+        size: React.PropTypes.number,
+        key: React.PropTypes.string
     },
 
     getInitialState: function() {
@@ -18,7 +19,7 @@ module.exports = React.createClass({
 
     render: function() {
         return (
-            <div className="icon">
+            <div className="icon" key={this.props.key}>
                 <div className="button">
                     <img src={this.state.source} width={this.props.size} height={this.props.size} alt=""/>
                     <div>{this.props.title}</div>
