@@ -6,9 +6,9 @@
 //
 // common components
 //
-var FA = require('FA');
-var Toggle = require('Toggle');
-var Icon = require('Icon');
+var FA = require('FA/FA');
+var Toggle = require('Toggle/Toggle');
+var Icon = require('Icon/Icon');
 
 //
 // get icon data

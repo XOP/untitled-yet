@@ -4,6 +4,8 @@
   "rules": {
     "indent": [2, 4],
     "comma-dangle": [2, "never"],
+    "padded-blocks": 0,
+    "vars-on-top": 1,
 
     "no-var": 0,
     "react/react-in-jsx-scope": 0,

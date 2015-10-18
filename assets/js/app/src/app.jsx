@@ -5,17 +5,17 @@
 //
 // preloading
 /*eslint-disable */
-var $ = require('zepto');
 var Q = require('q');
+var $ = require('zepto');
 /*eslint-enable  */
 
 
 //
 // loading
-var IconLibrary = require('IconLibrary');
+var IconLibrary = require('Library/IconLibrary');
 var appContainer = document.getElementById('app');
 
-React.render(
+ReactDOM.render(
     <IconLibrary />,
     appContainer
 );

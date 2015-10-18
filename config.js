@@ -1,4 +1,4 @@
-{
+module.exports = {
     "port": 3000,
     "paths" : {
         "css" : {
@@ -21,4 +21,4 @@
             "dest" : "public/data"
         }
     }
-}
+};

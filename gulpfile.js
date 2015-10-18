@@ -14,7 +14,7 @@ var merge = require('merge2');
 var runSequence = require('run-sequence');
 var webpack = require('webpack');
 
-var config = require('./config.json');
+var config = require('./config');
 var paths = config.paths;
 var production = $.util.env.p || $.util.env.prod;
 
@@ -69,42 +69,6 @@ gulp.task('fonts', function(){
 
 //
 // scripts
-
-// vendor | no-minification
-gulp.task('scripts-vendor', function(){
-    return gulp.src([
-            'node_modules/q/q.js',
-            'node_modules/zepto/zepto.min.js',
-            'node_modules/react/dist/react-with-addons.min.js'
-    ])
-        .pipe(gulp.dest(paths.js.dest + '/lib/'));
-});
-
-// custom
-gulp.task('scripts-custom', function(){
-    return gulp.src(paths.js.src + '/*.js')
-        .pipe($.plumber())
-        .pipe($.concat('main.js'))
-        .pipe(production ? $.uglify() : $.util.noop())
-        .pipe(gulp.dest(paths.js.dest));
-});
-
-// main js only
-gulp.task('scripts-main', function(){
-    return gulp.src(paths.js.src + '/*.js')
-        .pipe($.plumber())
-        .pipe($.concat('main.js'))
-        .pipe(production ? $.uglify() : $.util.noop())
-        .pipe(gulp.dest(paths.js.dest));
-});
-
-gulp.task('scripts', ['scripts-vendor', 'scripts-custom'], function(){
-    reload();
-});
-
-
-//
-// scripts bundle
 gulp.task('webpack', function(cb) {
     var config = require('./webpack.config.js');
     webpack(config,

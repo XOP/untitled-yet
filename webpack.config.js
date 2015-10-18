@@ -15,23 +15,24 @@ var config = {
     },
     resolve: {
         root: srcPath,
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['', '.js', '.jsx', '.json', '.html'],
         modulesDirectories: ['node_modules', 'assets/js/app/src', 'assets/js/app/utils'],
         alias: {}
     },
     module: {
         noParse: [],
         loaders: [
-            {test: /\.jsx$/, loaders: ['jsx-loader', 'imports-loader?React=react']}
-        ],
-        preLoaders: [
-            {test: /zepto\.min\.js$/, loader: 'script-loader'},
-            {test: /q\.js$/, loader: 'script-loader'},
+            {test: /\.jsx$/, loaders: ['jsx-loader', 'imports-loader?React=react&ReactDOM=react-dom']},
             {
                 test: /\.js(x)?$/,
                 exclude: /node_modules/,
                 loader: 'eslint-loader'
             }
+        ],
+        preLoaders: [
+            {test: /zepto\.min\.js$/, loader: 'script-loader'},
+            {test: /q\.js$/, loader: 'script-loader'}
+
         ]
     },
 
@@ -40,6 +41,5 @@ var config = {
 
 config.addVendor('zepto', 'zepto/zepto.min.js');
 config.addVendor('q', 'q/q.js');
-//config.addVendor('react', 'react/dist/react-with-addons.min.js');
 
 module.exports = config;

@@ -2,6 +2,8 @@
  * State toggler
  */
 
+var Utils = require('utils');
+
 module.exports = React.createClass({
     propTypes: {
         on: React.PropTypes.bool,
@@ -16,7 +18,7 @@ module.exports = React.createClass({
 
     render: function() {
         var className = 'toggler fa fa-toggle-' + (this.props.on ? 'on' : 'off');
-        var attrs = $.extend({}, this.props, {className: className, onClick: this.props.onToggle});
+        var attrs = Utils.extend({}, this.props, {className: className, onClick: this.props.onToggle});
         return (
             React.createElement('span', attrs)
         );
